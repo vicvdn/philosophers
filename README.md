@@ -1,3 +1,3 @@
-## philosophers
+# philosophers
 
-# External function allowed : 
+## External function allowed : 
