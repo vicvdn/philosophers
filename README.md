@@ -11,12 +11,12 @@
 - printf
     ```c
     int printf(const char *format, ...);
-    ``
+    ```
 
 - malloc
     ```c
     void *malloc(size_t size);
-    ``
+    ```
 - free
     ```c
     void free(void *ptr);
@@ -25,7 +25,7 @@
 - write
     ```c
     ssize_t write(int fd, const void *buf, size_t count);
-    ``
+    ```
 
 - usleep
     ```c
