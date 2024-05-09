@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/09 11:38:02 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:19:40 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 
 # define FAIL 1
@@ -23,6 +24,7 @@
 typedef struct s_philo
 {
 	int				id;
+	pthread_t		thread;
 	int				meals_eaten;
 	size_t			last_meal;
 	struct s_philo	*prev;
@@ -31,12 +33,15 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int			philo_nb;
-	size_t		time_to_die;
-	size_t		time_to_eat;
-	size_t		time_to_sleep;
-	int			meals;
-	t_philo		*philos;
+	pthread_t		observer;
+	int				philo_nb;
+	long			start_time;
+	int				death_flag;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				meals;
+	t_philo			*philos;
 }				t_data;
 
 /*		FREE		*/
@@ -48,6 +53,15 @@ int		ft_init_philos(t_data *data);
 
 /*		REMOVE		*/
 void	ft_print_philos(t_data *data);
+
+/*		SIMUL_UTILS		*/
+int		ft_philo_thread(t_data *data, t_philo *philo);
+int		ft_create_threads(t_data *data);
+
+/*		SIMULATION		*/
+void	ft_routine(void *arg);
+void	*ft_observer(void *arg);
+int		ft_launch_simulation(t_data *data);
 
 /*		UTILS		*/
 int		ft_isdigit(char *str);

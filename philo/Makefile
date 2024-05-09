@@ -6,7 +6,7 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/09 11:37:22 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/09 13:05:39 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parsing.c \
 				$(SRC_DIR)/utils.c \
 				$(SRC_DIR)/free.c \
-				$(SRC_DIR)/remove.c
+				$(SRC_DIR)/remove.c \
+				$(SRC_DIR)/simulation.c
 				
 
 

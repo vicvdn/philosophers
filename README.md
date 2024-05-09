@@ -206,9 +206,20 @@ Access to Termination Status: With joinable threads, you can use pthread_join to
 
 ***In summary, detaching a thread simplifies resource management by automatically releasing the thread's resources upon termination, at the cost of losing access to the thread's exit status. Making a thread joinable allows for more complex interactions with the thread, such as waiting for its completion or retrieving its exit status, but requires explicit management of the thread's resources***
 
+**Valgrind flags**
+
+The --tool=helgrind and --tool=drd flags in Valgrind are used to specify which tool should be used for analyzing multi-threaded programs. Both tools are designed to detect issues related to thread synchronization, such as race conditions and deadlocks, but they differ in their approach and output.
+
+**Helgrind**: This tool is specifically designed to detect data races and deadlocks in multi-threaded programs. It operates by recording memory access ordering and thread locking information. Helgrind is particularly useful for detecting race conditions where multiple threads access shared data concurrently without proper synchronization. It requires explicit specification via the --tool=helgrind flag when running Valgrind. Helgrind is known for producing output that is easier to interpret, making it a preferred choice for many developers when dealing with thread-related issues 12.*
+
+**DRD (Data Race Detector)**: Similar to Helgrind, DRD is designed to detect data races and deadlocks in multi-threaded applications. However, DRD tends to have better performance compared to Helgrind, making it a suitable choice for larger or more complex applications where performance is a concern. Like Helgrind, DRD also records memory access ordering and thread locking information to detect potential synchronization issues. The --tool=drd flag is used to specify DRD when running Valgrind. While both tools perform substantially the same work, the choice between them often comes down to the specific needs of the project, such as the preference for easier-to-read output (Helgrind) versus better performance (DRD) 2.
+
+In summary, both Helgrind and DRD are powerful tools within Valgrind for diagnosing thread-related issues in multi-threaded applications. The choice between them depends on the developer's preference for output readability versus performance.
+
 ## Useful links
 
 - [Playlist de Code Vault sur les threads](<https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2>)
 - [Wikipedia au sujet du problème des Dining Philosophers](<https://en.wikipedia.org/wiki/Dining_philosophers_problem>)
 - [Vidéo de Neso Academy pour le problème des Dining Philosophers](<https://www.youtube.com/watch?v=FYUi-u7UWgw>)
 - [En cherchant, j'étais tombé sur un cours au sujet du problème et de ses résolutions](<https://web.eecs.utk.edu/~jplank/plank/classes/cs360/360/notes/Dphil/lecture.html>)
+- [Multiples ressources about 42 in general](https://github.com/jotavare/42-resources?tab=readme-ov-file)
