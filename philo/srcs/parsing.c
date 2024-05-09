@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:49 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 14:13:53 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:15:02 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	ft_init_data(t_data *data)
 	data->time_to_sleep = 0;
 	data->meals = -1; //if meals is not set, it will be -1
 	data->philos = NULL;
+	data->forks = ft_set_forks(data);
+	if (!data->forks)
+		exit(FAIL);
 }
 
 int	ft_parsing_args(int ac, char **av, t_data *data)
@@ -88,12 +91,15 @@ static t_philo	*ft_fill_philo(t_data *data, t_philo *cur,
 	{
 		data->philos = cur;
 		cur->prev = NULL;
+		cur->left_fork = data->forks[data->philo_nb - 1];
 	}
 	else
 	{
 		prev->next = cur;
 		cur->prev = prev;
+		cur->left_fork = data->forks[i + 1];
 	}
+	cur->own_fork = data->forks[i];
 	cur->next = NULL;
 	return (cur);
 }

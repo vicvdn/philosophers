@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:50:44 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 14:19:01 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:17:39 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	ft_routine(void *arg)
 	{
 		if (data->death_flag == 1)
 			break ;
+		if (philo->meals_eaten == data->meals)
+			break ;
+		
+		//make the philo eat when its 2 forks are available
+		//make the philo think
+		//make the philo sleep during data->time_to_sleep
 	}
 }
 
@@ -42,6 +48,7 @@ int	ft_launch_simulation(t_data *data)
 {
 	if (ft_create_threads(data) == FAIL)
 		return (FAIL);
-	ft_start_simulation(data);
+	if (ft_join_threads(data) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }

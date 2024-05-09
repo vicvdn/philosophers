@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/09 14:19:40 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:56:58 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 typedef struct s_philo
 {
 	int				id;
+	int				own_fork;
+	int				left_fork;
 	pthread_t		thread;
 	int				meals_eaten;
 	size_t			last_meal;
@@ -40,6 +42,7 @@ typedef struct s_data
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
+	int				*forks;
 	int				meals;
 	t_philo			*philos;
 }				t_data;
@@ -57,6 +60,7 @@ void	ft_print_philos(t_data *data);
 /*		SIMUL_UTILS		*/
 int		ft_philo_thread(t_data *data, t_philo *philo);
 int		ft_create_threads(t_data *data);
+int		ft_join_threads(t_data *data);
 
 /*		SIMULATION		*/
 void	ft_routine(void *arg);
