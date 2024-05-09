@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 09:42:30 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/08 09:51:49 by ubuntu           ###   ########.fr       */
+/*   Created: 2024/05/09 11:12:05 by vvaudain          #+#    #+#             */
+/*   Updated: 2024/05/09 11:30:46 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_isdigit(char *str)
 	return (SUCCESS);
 }
 
-static int ft_char_isdigit(char c)
+static int	ft_char_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/08 09:47:55 by ubuntu           ###   ########.fr        #
+#    Updated: 2024/05/09 11:37:22 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ CYAN 		:=	\033[0;96m
 # Sources and Objects
 SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parsing.c \
-				$(SRC_DIR)/utils.c
+				$(SRC_DIR)/utils.c \
+				$(SRC_DIR)/free.c \
+				$(SRC_DIR)/remove.c
 				
 
 
