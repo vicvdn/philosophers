@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:56:55 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/10 09:18:18 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/10 10:40:22 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	ft_init_philos(t_data *data)
 			return (FAIL);
 		cur = ft_fill_philo(data, cur, prev, i);
 		ft_init_philo_forks(data, data->forks, cur, i);
+		cur->print = &data->print;
 		prev = cur;
 		cur = cur->next;
 		i++;

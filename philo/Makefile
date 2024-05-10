@@ -6,7 +6,7 @@
 #    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/10 09:38:38 by ubuntu           ###   ########.fr        #
+#    Updated: 2024/05/10 10:42:35 by ubuntu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/remove.c \
 				$(SRC_DIR)/simul_utils.c \
 				$(SRC_DIR)/simulation.c \
+				$(SRC_DIR)/routine_func.c \
 				$(SRC_DIR)/utils.c
 				
 

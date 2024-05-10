@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:12:05 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 11:30:46 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 10:11:58 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ int	ft_atoi(const char *nptr)
 	while (ft_char_isdigit(nptr[i]) && nptr[i])
 		res = (res * 10) + (nptr[i++] - 48);
 	return (sign * res);
+}
+
+size_t	ft_get_time(void)
+{
+	struct timeval	time;
+	size_t			res;
+
+	gettimeofday(&time, NULL);
+	res = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (res);
 }

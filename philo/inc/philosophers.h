@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/10 09:43:15 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/10 10:39:56 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <sys/time.h> 
+#include <unistd.h>
 
 
 # define FAIL 1
@@ -26,6 +28,7 @@ typedef struct s_philo
 	int				id;
 	pthread_mutex_t	*own_fork;
 	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*print;
 	pthread_t		thread;
 	int				meals_eaten;
 	size_t			last_meal;
@@ -43,6 +46,7 @@ typedef struct s_data
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
 	int				meals;
 	t_philo			*philos;
 }				t_data;

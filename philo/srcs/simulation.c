@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:50:44 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/10 09:44:27 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/10 09:59:34 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
+	timeval	time;
 
 	data = (t_data *)arg;
 	philo = data->philos;
@@ -25,7 +26,7 @@ void	*ft_routine(void *arg)
 			break ;
 		if (philo->meals_eaten == data->meals)
 			break ;
-		
+		time = 
 		//make the philo eat when its 2 forks are available
 		//make the philo think
 		//make the philo sleep during data->time_to_sleep
