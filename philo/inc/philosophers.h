@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/09 14:56:58 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:43:15 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 typedef struct s_philo
 {
 	int				id;
-	int				own_fork;
-	int				left_fork;
+	pthread_mutex_t	*own_fork;
+	pthread_mutex_t	*left_fork;
 	pthread_t		thread;
 	int				meals_eaten;
 	size_t			last_meal;
@@ -42,7 +42,7 @@ typedef struct s_data
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	int				*forks;
+	pthread_mutex_t	*forks;
 	int				meals;
 	t_philo			*philos;
 }				t_data;
@@ -50,9 +50,16 @@ typedef struct s_data
 /*		FREE		*/
 void	ft_free_all(t_data *data);
 
+/*		INIT		*/
+void	ft_init_data(t_data *data);
+void	ft_init_philo_forks(t_data *data, pthread_mutex_t *forks, t_philo *cur, int i);
+int		ft_init_philos(t_data *data);
+
+/*		PARSING_UTILS		*/
+pthread_mutex_t	*ft_set_forks(t_data *data);
+
 /*		PARSING		*/
 int		ft_parsing_args(int ac, char **av, t_data *data);
-int		ft_init_philos(t_data *data);
 
 /*		REMOVE		*/
 void	ft_print_philos(t_data *data);
@@ -63,7 +70,7 @@ int		ft_create_threads(t_data *data);
 int		ft_join_threads(t_data *data);
 
 /*		SIMULATION		*/
-void	ft_routine(void *arg);
+void	*ft_routine(void *arg);
 void	*ft_observer(void *arg);
 int		ft_launch_simulation(t_data *data);
 

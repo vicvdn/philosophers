@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:38 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 14:10:03 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:31:21 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_data			*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)

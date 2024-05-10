@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:49 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 15:15:02 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 08:58:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ static int	ft_fill_data(t_data *data, char *str, int i)
 	return (SUCCESS);
 }
 
-static void	ft_init_data(t_data *data)
-{
-	data->observer = 0;
-	data->philo_nb = 0;
-	data->start_time = 0;
-	data->death_flag = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	data->meals = -1; //if meals is not set, it will be -1
-	data->philos = NULL;
-	data->forks = ft_set_forks(data);
-	if (!data->forks)
-		exit(FAIL);
-}
-
 int	ft_parsing_args(int ac, char **av, t_data *data)
 {
 	int		i;
@@ -76,50 +60,6 @@ int	ft_parsing_args(int ac, char **av, t_data *data)
 			if (ft_fill_data(data, av[i], i) == FAIL)
 				return (free(data), FAIL);
 		}
-		i++;
-	}
-	return (SUCCESS);
-}
-
-static t_philo	*ft_fill_philo(t_data *data, t_philo *cur,
-	t_philo *prev, int i)
-{
-	cur->id = i;
-	cur->meals_eaten = 0;
-	cur->last_meal = 0;
-	if (i == 0)
-	{
-		data->philos = cur;
-		cur->prev = NULL;
-		cur->left_fork = data->forks[data->philo_nb - 1];
-	}
-	else
-	{
-		prev->next = cur;
-		cur->prev = prev;
-		cur->left_fork = data->forks[i + 1];
-	}
-	cur->own_fork = data->forks[i];
-	cur->next = NULL;
-	return (cur);
-}
-
-int	ft_init_philos(t_data *data)
-{
-	t_philo	*cur;
-	t_philo	*prev;
-	int		i;
-
-	i = 0;
-	prev = NULL;
-	while (i < data->philo_nb)
-	{
-		cur = malloc(sizeof(t_philo));
-		if (!cur)
-			return (FAIL);
-		cur = ft_alloc_fill_philo(data, cur, prev, i);
-		prev = cur;
-		cur = cur->next;
 		i++;
 	}
 	return (SUCCESS);

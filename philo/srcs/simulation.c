@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:50:44 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 15:17:39 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:44:27 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_routine(void *arg)
+void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
@@ -30,18 +30,20 @@ void	ft_routine(void *arg)
 		//make the philo think
 		//make the philo sleep during data->time_to_sleep
 	}
+	return (NULL);
 }
 
 void	*ft_observer(void *arg)
 {
 	t_data	*data;
 
-	data = (t_data *)data;
+	data = (t_data *)arg;
 	while (1)
 	{
 		if (data->death_flag == 1)
 			break ;
 	}
+	return (NULL);
 }
 
 int	ft_launch_simulation(t_data *data)

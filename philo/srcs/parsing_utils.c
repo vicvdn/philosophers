@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:10:20 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 15:14:07 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:35:50 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_set_forks(t_data *data)
+pthread_mutex_t	*ft_set_forks(t_data *data)
 {
 	int				i;
 	pthread_mutex_t	*forks;
 
 	forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb);
 	if (!forks)
-		return (FAIL);
+		return (NULL);
 	i = 0;
 	while (i < data->philo_nb)
 	{
@@ -30,7 +30,7 @@ int	ft_set_forks(t_data *data)
 				pthread_mutex_destroy(&forks[i]);
 				i--;
 			}
-			return (ft_free_all(data), FAIL);
+			return (ft_free_all(data), NULL);
 		}
 		i++;
 	}
