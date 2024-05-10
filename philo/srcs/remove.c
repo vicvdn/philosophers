@@ -22,7 +22,7 @@ void	ft_print_philos(t_data *data)
 		printf("No philosophers\n");
 		return ;
 	}
-	printf("-----Philo\t Meals_eaten\t Prev\t\t Cur\t\t Next\t\t -----\n");
+	printf("-----Philo\t Meals_eaten\t Prev\t\t Cur\t\t Next\t\t lfork\t\t print\t\t-----\n");
 	while (cur)
 	{
 		printf("----- %d\t\t\t", cur->id);
@@ -31,7 +31,8 @@ void	ft_print_philos(t_data *data)
 		if (cur->prev == NULL)
 			printf("\t");
 		printf(" %p\t", cur);
-		printf(" %p\t\n", cur->next);
+		printf(" %p\t", cur->next);
+		printf(" %p\t\n", cur->left_fork);
 		// printf("----- %d\t\t\t %d\t\t\t %d\t\t %d\t\t -----\n", cur->id, cur->meals_eaten, cur->prev->id, cur->next->id);
 		cur = cur->next;
 	}

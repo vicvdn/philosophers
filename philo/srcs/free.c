@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:31 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/09 15:13:39 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:10:52 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,18 @@ void	ft_free_all(t_data *data)
 		free(data->forks);
 	if (data)
 		free(data);
+}
+
+void	ft_destroy(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&data->death_lock);
+	pthread_mutex_destroy(&data->print);
 }

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 10:04:34 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/10 10:35:04 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/10 15:08:23 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	ft_eating(t_data *data, t_philo *philo)
 	if (data->philo_nb == 1)
 	{
 		usleep(data->time_to_die);
+		pthread_mutex_lock(philo->death_lock);
+		(data->is_dead) = 1;
+		pthread_mutex_unlock(philo->death_lock);
 		pthread_mutex_unlock(philo->own_fork);
 		return ;
 	}

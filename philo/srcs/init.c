@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:56:55 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/10 10:40:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/10 15:09:10 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ void	ft_init_data(t_data *data)
 	data->observer = 0;
 	data->philo_nb = 0;
 	data->start_time = 0;
-	data->death_flag = 0;
 	data->time_to_die = 0;
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->meals = -1; //if meals is not set, it will be -1
+	data->is_dead = 0;
+	if (pthread_mutex_init(&data->death_lock, NULL))
+	{
+		ft_free_all(data);
+		exit(FAIL);
+	}
 	data->philos = NULL;
 	data->forks = ft_set_forks(data);
 	if (!data->forks)
@@ -60,6 +65,12 @@ static t_philo	*ft_fill_philo(t_data *data, t_philo *cur,
 	return (cur);
 }
 
+static void ft_init_rest_philo(t_data *data, t_philo *cur)
+{
+	cur->death_lock = &data->death_lock;
+	cur->print_lock = &data->print;
+}
+
 int	ft_init_philos(t_data *data)
 {
 	t_philo	*cur;
@@ -75,7 +86,8 @@ int	ft_init_philos(t_data *data)
 			return (FAIL);
 		cur = ft_fill_philo(data, cur, prev, i);
 		ft_init_philo_forks(data, data->forks, cur, i);
-		cur->print = &data->print;
+		ft_init_rest_philo(data, cur);
+		ft_print_philos(data);
 		prev = cur;
 		cur = cur->next;
 		i++;
