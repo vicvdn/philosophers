@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:49 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/10 08:58:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/13 11:44:01 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	ft_parsing_args(int ac, char **av, t_data *data)
 	if (ac < 5 || ac > 6)
 		return (free(data), FAIL);
 	i = 1;
-	ft_init_data(data);
+	if (ft_init_data(data) == FAIL)
+		return (ft_free_all(data), FAIL);
 	while (av[i])
 	{
 		if (ft_isdigit(av[i]) == FAIL)

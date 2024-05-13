@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/10 15:31:25 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/13 15:20:41 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	pthread_mutex_t	*own_fork;
-	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	own_fork;
+	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*death_lock;
 	pthread_mutex_t	*print_lock;
 	int				meals_eaten;
 	size_t			last_meal;
+	int				philo_nb;
+	int				is_dead;
+	int				meals;
+	size_t			*time_to_die;
+	size_t			*time_to_eat;
+	size_t			*time_to_sleep;
 	struct s_philo	*prev;
 	struct s_philo	*next;
 }				t_philo;
@@ -43,8 +49,8 @@ typedef struct s_data
 	long			start_time;
 	size_t			time_to_die;
 	size_t			time_to_eat;
-	int				meals;
 	size_t			time_to_sleep;
+	int				meals;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_lock;
 	pthread_mutex_t	print;
@@ -58,7 +64,7 @@ void	ft_free_all(t_data *data);
 void	ft_destroy(t_data *data);
 
 /*		INIT		*/
-void	ft_init_data(t_data *data);
+int		ft_init_data(t_data *data);
 void	ft_init_philo_forks(t_data *data, pthread_mutex_t *forks, t_philo *cur, int i);
 int		ft_init_philos(t_data *data);
 
@@ -70,6 +76,12 @@ int		ft_parsing_args(int ac, char **av, t_data *data);
 
 /*		REMOVE		*/
 void	ft_print_philos(t_data *data);
+void	ft_print_data(t_data *data);
+
+/*		ROUTINE FUNCTIONS	*/
+void	ft_thinking(t_philo *philo);
+void	ft_sleeping(t_philo *philo);
+void	ft_eating(t_philo *philo);
 
 /*		SIMUL_UTILS		*/
 int		ft_philo_thread(t_data *data, t_philo *philo);
