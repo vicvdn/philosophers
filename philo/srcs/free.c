@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:11:31 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/13 15:06:20 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:43:33 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_destroy(t_data *data)
 	i = 0;
 	while (i < data->philo_nb)
 	{
+		printf("destroying fork %d\n", i);
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}

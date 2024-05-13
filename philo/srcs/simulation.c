@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:50:44 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/13 15:25:29 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:36:44 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,14 @@ int	ft_launch_simulation(t_data *data)
 	t_philo	*cur;
 
 	cur = data->philos;
+	data->start_time = ft_get_time();
 	ft_print_data(data);
+	// while (cur)
+	// {
+	// 	ft_print_philo_2(cur);
+	// 	cur = cur->next;
+	// }
+	// cur = data->philos;
 	while (cur)
 	{
 		if (ft_create_threads(data, cur) == FAIL)

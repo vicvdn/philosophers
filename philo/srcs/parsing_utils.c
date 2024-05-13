@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:10:20 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/10 09:35:50 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/05/13 16:43:00 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ pthread_mutex_t	*ft_set_forks(t_data *data)
 	int				i;
 	pthread_mutex_t	*forks;
 
-	forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb);
+	forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb + 1);
 	if (!forks)
 		return (NULL);
 	i = 0;

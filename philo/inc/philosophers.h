@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 09:04:49 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/13 15:20:41 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:35:42 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <pthread.h>
 #include <sys/time.h> 
 #include <unistd.h>
+#include <stdbool.h>
 
 
 # define FAIL 1
@@ -36,6 +37,7 @@ typedef struct s_philo
 	int				philo_nb;
 	int				is_dead;
 	int				meals;
+	long			start_time;
 	size_t			*time_to_die;
 	size_t			*time_to_eat;
 	size_t			*time_to_sleep;
@@ -77,6 +79,7 @@ int		ft_parsing_args(int ac, char **av, t_data *data);
 /*		REMOVE		*/
 void	ft_print_philos(t_data *data);
 void	ft_print_data(t_data *data);
+void	ft_print_philo_2(t_philo *philo);
 
 /*		ROUTINE FUNCTIONS	*/
 void	ft_thinking(t_philo *philo);
@@ -84,7 +87,8 @@ void	ft_sleeping(t_philo *philo);
 void	ft_eating(t_philo *philo);
 
 /*		SIMUL_UTILS		*/
-int		ft_philo_thread(t_data *data, t_philo *philo);
+void 	ft_print_message(t_philo *philo, char *message);
+bool 	ft_death_check(t_philo *philo);
 int		ft_create_threads(t_data *data, t_philo *cur);
 int		ft_join_threads(t_data *data);
 

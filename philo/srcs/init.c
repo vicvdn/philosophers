@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:56:55 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/05/13 15:21:54 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:33:43 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static t_philo	*ft_fill_philo(t_data *data, t_philo *cur,
 	cur->last_meal = 0;
 	cur->is_dead = (data->is_dead);
 	cur->meals = data->meals;
+	cur->start_time = data->start_time;
 	cur->time_to_die = &data->time_to_die;
 	cur->time_to_eat = &data->time_to_eat;
 	cur->time_to_sleep = &data->time_to_sleep;
@@ -85,6 +86,7 @@ int	ft_init_philos(t_data *data)
 
 	i = 0;
 	prev = NULL;
+	cur = data->philos;
 	while (i < data->philo_nb)
 	{
 		cur = malloc(sizeof(t_philo));
