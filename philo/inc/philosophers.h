@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 16:53:23 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:14:46 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ int				ft_init_rest_data(t_data *data);
 /*		PARSING		*/
 int				ft_parse_args(int ac, char **av, t_data *data);
 void			ft_fill_philo(t_philo *philo, t_data *data, int i);
+
+/*		REMOVE		*/
+void	ft_print_forks(t_philo *philo);
+
+/*		ROUTINE		*/
+void			ft_print(void *arg);
 
 /*		UTILS		*/
 int				ft_atoi(const char *str);

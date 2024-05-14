@@ -6,22 +6,11 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:24:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 16:30:23 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:16:08 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static void	ft_print(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-	usleep(500);
-	pthread_mutex_lock(philo->print);
-	printf("Hello from thread %d\n", philo->id);
-	pthread_mutex_unlock(philo->print);
-}
 
 static int ft_init_philos(t_data *data)
 {
@@ -38,6 +27,7 @@ static int ft_init_philos(t_data *data)
 		if (!philos[i])
 			return (FAIL);
 		ft_fill_philo(philos[i], data, i);
+		// ft_print_forks(philos[i]);
 		pthread_create(&philos[i]->thread, NULL, (void *) ft_print, (void *)philos[i]); //to protect
 		i++;
 	}
