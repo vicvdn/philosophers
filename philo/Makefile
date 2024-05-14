@@ -6,7 +6,7 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/14 14:39:23 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/14 15:15:26 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ CYAN 		:=	\033[0;96m
 
 # Sources and Objects
 SRC			:=	$(SRC_DIR)/main.c \
-				$(SRC_DIR)/utils.c
+				$(SRC_DIR)/utils.c \
+				$(SRC_DIR)/parsing.c
 
 # $(SRC_DIR)/free.c \
 # $(SRC_DIR)/init.c \
@@ -43,8 +44,6 @@ SRC			:=	$(SRC_DIR)/main.c \
 # $(SRC_DIR)/routine_func.c \
 # $(SRC_DIR)/utils.c
 				
-
-
 OBJ			:=	$(SRC:$(SRC_DIR)/%.c=$(BIN_DIR)/%.o)
 
 # Default make

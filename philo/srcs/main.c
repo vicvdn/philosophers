@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:24:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 15:09:01 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:12:26 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,6 @@ static void ft_join_and_free(t_philo **philos, int philo_nb)
 	}
 	if (philos)
 		free(philos);
-}
-
-static int ft_parse_args(int ac, char **av, t_data *data)
-{
-	if (ac != 5 && ac != 6)
-	{
-		printf("Error: wrong number of arguments\n");
-		return (FAIL);
-	}
-	data->philo_nb = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
-	data->time_to_eat = ft_atoi(av[3]);
-	data->time_to_sleep = ft_atoi(av[4]);
-	if (ac == 6)
-		data->meal_nb = ft_atoi(av[5]);
-	else
-		data->meal_nb = -1;
-	return (SUCCESS);
 }
 
 static void	ft_print(void *arg)

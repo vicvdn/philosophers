@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 15:03:51 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:16:56 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ typedef struct s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				meal_nb;
+	int				meals;
 	pthread_mutex_t	print;
 	t_philo			**philos;
 }				t_data;
+
+/*		PARSING		*/
+int		ft_parse_args(int ac, char **av, t_data *data);
 
 /*		UTILS		*/
 int		ft_atoi(const char *str);
