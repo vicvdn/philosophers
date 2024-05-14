@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:18:37 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/13 16:37:48 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:22:17 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	ft_create_threads(t_data *data, t_philo *cur)
 	if (!cur)
 	{
 		if (pthread_create(&observer, NULL, ft_observer, (void *)data) != 0)
-			return (ft_free_all(data), FAIL);
+			return (FAIL);
+			// return (ft_free_philos(data), FAIL);
 		data->observer = observer;
 	}
 	else
@@ -45,25 +46,28 @@ int	ft_create_threads(t_data *data, t_philo *cur)
 	return (SUCCESS);
 }
 
-int ft_join_threads(t_data *data)
-{
-	t_philo	*cur;
+// int ft_join_and_free_threads(t_data *data)
+// {
+// 	t_philo	*cur;
+// 	t_philo	*tmp;
 
-	cur = data->philos;
-	while (cur)
-	{
-		printf("philo->thread = %p\n", &cur->thread);
-		if (pthread_join(cur->thread, NULL) != 0)
-		{
-			printf("Error: pthread_join failed\n");
-			return (ft_free_all(data), FAIL);
-		}
-		cur = cur->next;
-	}
-	// if (pthread_join(data->observer, NULL) != 0)
-	// {
-	// 	printf("Error: pthread_join failed\n");
-	// 	return (ft_free_all(data), FAIL);
-	// }
-	return (SUCCESS);
-}
+// 	cur = data->philos;
+// 	while (cur)
+// 	{
+// 		tmp = cur->next;
+// 		if (pthread_join(cur->thread, NULL) != 0)
+// 		{
+// 			printf("Error: pthread_join failed\n");
+// 			return (ft_free_philos(data), FAIL);
+// 		}
+// 		free(cur);
+// 		cur = tmp;
+// 	}
+// 	// if (pthread_join(data->observer, NULL) != 0)
+// 	// {
+// 	// 	printf("Error: pthread_join failed\n");
+// 	// 	return (ft_free_philos(data), FAIL);
+// 	// }
+// 	ft_free_rest(data);
+// 	return (SUCCESS);
+// }

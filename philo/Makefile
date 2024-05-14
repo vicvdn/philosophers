@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/10 10:42:35 by ubuntu           ###   ########.fr        #
+#    Updated: 2024/05/14 14:39:23 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,17 @@ CYAN 		:=	\033[0;96m
 
 # Sources and Objects
 SRC			:=	$(SRC_DIR)/main.c \
-				$(SRC_DIR)/free.c \
-				$(SRC_DIR)/init.c \
-				$(SRC_DIR)/parsing_utils.c \
-				$(SRC_DIR)/parsing.c \
-				$(SRC_DIR)/remove.c \
-				$(SRC_DIR)/simul_utils.c \
-				$(SRC_DIR)/simulation.c \
-				$(SRC_DIR)/routine_func.c \
 				$(SRC_DIR)/utils.c
+
+# $(SRC_DIR)/free.c \
+# $(SRC_DIR)/init.c \
+# $(SRC_DIR)/parsing_utils.c \
+# $(SRC_DIR)/parsing.c \
+# $(SRC_DIR)/remove.c \
+# $(SRC_DIR)/simul_utils.c \
+# $(SRC_DIR)/simulation.c \
+# $(SRC_DIR)/routine_func.c \
+# $(SRC_DIR)/utils.c
 				
 
 

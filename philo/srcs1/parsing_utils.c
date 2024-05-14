@@ -6,20 +6,20 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:10:20 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/13 16:43:00 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:22:09 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-pthread_mutex_t	*ft_set_forks(t_data *data)
+int	ft_set_forks(t_data *data)
 {
 	int				i;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	forks[data->philo_nb];
 
-	forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb + 1);
-	if (!forks)
-		return (NULL);
+	// forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb + 1);
+	// if (!forks)
+	// 	return (NULL);
 	i = 0;
 	while (i < data->philo_nb)
 	{
@@ -30,9 +30,12 @@ pthread_mutex_t	*ft_set_forks(t_data *data)
 				pthread_mutex_destroy(&forks[i]);
 				i--;
 			}
-			return (ft_free_all(data), NULL);
+			return (FAIL);
+			// return (ft_free_philos(data), FAIL);
 		}
 		i++;
 	}
-	return (forks);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb);
+	data->forks = forks;
+	return (SUCCESS);
 }
