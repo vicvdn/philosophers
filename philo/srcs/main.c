@@ -6,32 +6,11 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:24:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 15:12:26 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:02:58 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static void ft_join_and_free(t_philo **philos, int philo_nb)
-{
-	int i;
-
-	i = 0;
-	while (i < philo_nb)
-	{
-		pthread_join(philos[i]->thread, NULL);
-		i++;
-	}
-	i = 0;
-	while (i < philo_nb)
-	{
-		if (philos[i])
-			free(philos[i]);
-		i++;
-	}
-	if (philos)
-		free(philos);
-}
 
 static void	ft_print(void *arg)
 {
@@ -71,11 +50,13 @@ int main(int ac, char **av)
 {
 	t_data 	data;
 
-	ft_parse_args(ac, av, &data);
-	pthread_mutex_init(&data.print, NULL);
+	if (ft_parse_args(ac, av, &data) == FAIL)
+		return (FAIL);
+	ft_init_rest_data(&data);
 	if (ft_init_philos(&data) == FAIL)
 		return (FAIL);
 	ft_join_and_free(data.philos, data.philo_nb);
+	// ft_free_all(&data);
 	pthread_mutex_destroy(&data.print);
 	return (0);
 }

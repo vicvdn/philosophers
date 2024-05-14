@@ -6,14 +6,14 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/14 15:15:26 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/14 15:57:16 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Setup
 NAME 		:=	philosophers
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror -g3
+CFLAGS		:=	-g3#-Wall -Wextra -Werror -g3
 
 # Valgrind
 VAL_FLAGS	:=	--leak-check=full --show-leak-kinds=all --track-origins=yes
@@ -32,7 +32,9 @@ CYAN 		:=	\033[0;96m
 # Sources and Objects
 SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils.c \
-				$(SRC_DIR)/parsing.c
+				$(SRC_DIR)/parsing.c \
+				$(SRC_DIR)/init.c \
+				$(SRC_DIR)/free.c
 
 # $(SRC_DIR)/free.c \
 # $(SRC_DIR)/init.c \
