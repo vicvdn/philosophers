@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 15:59:36 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:53:23 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
+	int				philo_nb;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				meals;
+	pthread_mutex_t *left_fork;
+	pthread_mutex_t *own_fork;
 	pthread_mutex_t	*print;
 }				t_philo;
 
@@ -46,16 +53,18 @@ typedef struct s_data
 }				t_data;
 
 /*		FREE		*/
-void	ft_join_and_free(t_philo **philos, int philo_nb);
-void	ft_free_all(t_data *data);
+void			ft_join_and_free(t_philo **philos, int philo_nb);
+void			ft_free_all(t_data *data);
 
 /*		INIT		*/
-int		ft_init_rest_data(t_data *data);
+void			ft_set_forks(t_data *data, int philo_nb);
+int				ft_init_rest_data(t_data *data);
 
 /*		PARSING		*/
-int		ft_parse_args(int ac, char **av, t_data *data);
+int				ft_parse_args(int ac, char **av, t_data *data);
+void			ft_fill_philo(t_philo *philo, t_data *data, int i);
 
 /*		UTILS		*/
-int		ft_atoi(const char *str);
+int				ft_atoi(const char *str);
 
 #endif

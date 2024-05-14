@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:24:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 16:02:58 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:30:23 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static int ft_init_philos(t_data *data)
 		philos[i] = malloc(sizeof(t_philo));
 		if (!philos[i])
 			return (FAIL);
-		philos[i]->id = i;
-		philos[i]->print = &data->print;
+		ft_fill_philo(philos[i], data, i);
 		pthread_create(&philos[i]->thread, NULL, (void *) ft_print, (void *)philos[i]); //to protect
 		i++;
 	}
