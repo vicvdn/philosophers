@@ -6,7 +6,7 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/15 14:29:55 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/15 16:54:24 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,8 +81,17 @@ norm:
 	@norminette $(SRC) $(INC_DIR)/*.h
 
 # Valgrind
-val: $(NAME)
+val: clean $(NAME)
 	@valgrind $(VAL_FLAGS) ./$(NAME)
+
+helgrind: clean $(NAME)
+	@valgrind --tool=helgrind ./$(NAME) $(ARGS)
+
+# Exec
+ARGS = 2 800 500 200
+
+exec: clean $(NAME)
+	./$(NAME) $(ARGS)
 
 # Non-File Targets
 .PHONY:	all clean fclean re norm val

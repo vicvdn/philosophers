@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 15:33:16 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:33:07 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	int				meals;
+	long			start_time;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*death_lock;
 	pthread_mutex_t	*forks;
@@ -40,6 +41,7 @@ typedef struct s_philo
 	int				*is_dead;
 	long			last_meal;
 	int				meals_eaten;
+	struct s_data	*data;
 }				t_philo;
 
 typedef struct s_data
@@ -85,7 +87,8 @@ int				ft_launch_simulation(t_data *data);
 
 /*		UTILS		*/
 int				ft_atoi(const char *str);
-size_t			ft_get_time(void);
+size_t			ft_get_time(t_philo *philo);
+size_t			ft_get_start_time(void);
 void			ft_print_message(t_philo *philo, char *message);
 void			ft_usleep(t_philo *philo, size_t time);
 

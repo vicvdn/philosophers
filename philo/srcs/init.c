@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 15:33:53 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:01:00 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_fill_philo(t_philo *philo, t_data *data, int i)
 	philo->time_to_eat = data->time_to_eat;
 	philo->time_to_sleep = data->time_to_sleep;
 	philo->meals = data->meals;
+	philo->start_time = data->start_time;
 	philo->mine = i;
 	if (i == data->philo_nb - 1)
 		philo->other = 0;
@@ -31,6 +32,8 @@ void	ft_fill_philo(t_philo *philo, t_data *data, int i)
 	printf("data->forks = %p\n", data->forks);
 	philo->forks = data->forks;
 	printf("philo->forks = %p\n", philo->forks);
+	philo->data = data;
+	
 }
 
 int ft_init_philos(t_data *data)
@@ -42,7 +45,7 @@ int ft_init_philos(t_data *data)
 	philos = malloc(sizeof(t_philo *) * data->philo_nb);
 	if (!philos)
 		return (FAIL);
-	data->start_time = ft_get_time();
+	data->start_time = ft_get_start_time();
 	while (i < data->philo_nb)
 	{
 		philos[i] = malloc(sizeof(t_philo));
@@ -72,11 +75,11 @@ void	ft_set_forks(t_data *data, int philo_nb)
 	forks = malloc(sizeof(pthread_mutex_t) * philo_nb);
 	if (!forks)
 		return ;
-	memset(forks, 0, sizeof(pthread_mutex_t) * philo_nb);
+	// memset(forks, 0, sizeof(pthread_mutex_t) * philo_nb);
 	i = 0;
 	while (i < philo_nb)
 	{
-		memset(&forks[i], 0, sizeof(pthread_mutex_t));
+		// memset(&forks[i], 0, sizeof(pthread_mutex_t));
 		if (pthread_mutex_init(&(forks[i]), NULL))
 		{
 			while (i >= 0)
@@ -87,6 +90,9 @@ void	ft_set_forks(t_data *data, int philo_nb)
 			return (free(forks));
 		}
 		i++;
+		// pthread_mutex_lock(&forks[i]);
+		// printf("forks[%d] = %p\n", i, &forks[i]);
+		// pthread_mutex_unlock(&forks[i]);
 	}
 	data->forks = forks;
 }
@@ -99,15 +105,15 @@ int	ft_init_rest_data(t_data *data)
 	if (data->forks == NULL)
 		return (FAIL);
 	data->is_dead = 0;
-	memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
-	memset(&data->print, 0, sizeof(pthread_mutex_t));
-	memset(&data->read, 0, sizeof(pthread_mutex_t));
+	// memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
+	// memset(&data->print, 0, sizeof(pthread_mutex_t));
+	// memset(&data->read, 0, sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(&data->death_lock, NULL) == 0)
 	{
 		free(data->forks);
 		return (FAIL);	
 	}
-		// return (free(data->forks), FAIL);
+		return (free(data->forks), FAIL);
 	if (pthread_mutex_init(&data->print, NULL) == 0)
 		return (free(data->forks), FAIL);
 	if (pthread_mutex_init(&data->read, NULL) == 0)

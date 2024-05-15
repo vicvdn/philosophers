@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 15:42:33 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:00:02 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,30 +97,38 @@ void	ft_eating(t_philo *philo)
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
-	int		j;
 
 	philo = (t_philo *)arg;
-	// j = 0;
-	// ft_print_forks(philo);
 	if (philo->id % 2 == 0)
-		usleep(1000);
-	while (1)
-	{
-		// if (*(philo->is_dead) == 1)
-		// 	return (NULL);
-		ft_eating(philo);
-		// ft_thinking(philo);
-		// ft_sleeping(philo);
-		usleep(42);
-		// j++;
-	}
-	printf("bye\n");
-	// ft_eating(philo);
-	// ft_thinking(philo);
-	// ft_sleeping(philo);
+		ft_usleep(philo, 2000);
+	// printf("je suis le philo [%d]\n", philo->id);
+	// printf("mon voisins est [%d]\n", philo->other);
+	pthread_mutex_lock(&philo->data->forks[philo->other]);
+	pthread_mutex_unlock(&philo->data->forks[philo->other]);
+	ft_print_message(philo, "has taken a fork mine");
+	// pthread_mutex_lock(&philo->data->forks[philo->other]);
+	// ft_print_message(philo, "is eating");
+	// ft_usleep(philo, philo->time_to_eat);
+	// pthread_mutex_unlock(&philo->data->forks[philo->other]);
 	
-	// pthread_mutex_lock(philo->print);
-	// printf("Hello from thread %d\n", philo->id);
-	// pthread_mutex_unlock(philo->print);
+	// while (1)
+	// {
+	// 	ft_print_message(philo, "trying to take a fork mine");
+	// 	pthread_mutex_lock(&philo->data->forks[philo->mine]);
+	// 	ft_print_message(philo, "has taken a fork mine");
+
+	// 	ft_print_message(philo, "trying to take a fork other");
+	// 	pthread_mutex_lock(&philo->data->forks[philo->other]);
+	// 	ft_print_message(philo, "has taken a fork other");
+
+	// 	ft_print_message(philo, "is eating");
+	// 	ft_usleep(philo, philo->time_to_eat);
+
+	// 	pthread_mutex_unlock(&philo->data->forks[philo->other]);
+	// 	ft_print_message(philo, "has released a fork other");
+	// 	pthread_mutex_unlock(&philo->data->forks[philo->mine]);
+	// 	ft_print_message(philo, "has released a fork mine");
+	// 	usleep(42);
+	// }
 	return (NULL);
 }
