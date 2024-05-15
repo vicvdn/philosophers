@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 11:56:23 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:33:53 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ void	ft_fill_philo(t_philo *philo, t_data *data, int i)
 	philo->time_to_eat = data->time_to_eat;
 	philo->time_to_sleep = data->time_to_sleep;
 	philo->meals = data->meals;
-	philo->own_fork = &data->forks[i];
+	philo->mine = i;
 	if (i == data->philo_nb - 1)
-		philo->left_fork = &data->forks[0];
+		philo->other = 0;
 	else
-		philo->left_fork = &data->forks[i + 1];
+		philo->other = i + 1;
 	philo->death_lock = &data->death_lock;
 	philo->is_dead = &data->is_dead;
+	printf("data->forks = %p\n", data->forks);
+	philo->forks = data->forks;
+	printf("philo->forks = %p\n", philo->forks);
 }
 
 int ft_init_philos(t_data *data)
@@ -46,6 +49,13 @@ int ft_init_philos(t_data *data)
 		if (!philos[i])
 			return (FAIL);
 		ft_fill_philo(philos[i], data, i);
+
+		// printf("COUCOU philos[%d]->own_fork = %p\n", i, philos[i]->own_fork);
+		// printf("COUCOU philos[%d]->left_fork = %p\n", i, philos[i]->left_fork);
+
+		// philos[i]->thread = malloc(sizeof(pthread_t));
+		// if (!philos[i]->thread)
+		// 	return (ft_join_and_free(philos, i), FAIL);
 		// ft_print_forks(philos[i]);
 		pthread_create(&philos[i]->thread, NULL, (void *) ft_routine, (void *)philos[i]); //to protect
 		i++;
@@ -91,9 +101,16 @@ int	ft_init_rest_data(t_data *data)
 	data->is_dead = 0;
 	memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
 	memset(&data->print, 0, sizeof(pthread_mutex_t));
+	memset(&data->read, 0, sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(&data->death_lock, NULL) == 0)
-		return (free(data->forks), FAIL);
+	{
+		free(data->forks);
+		return (FAIL);	
+	}
+		// return (free(data->forks), FAIL);
 	if (pthread_mutex_init(&data->print, NULL) == 0)
+		return (free(data->forks), FAIL);
+	if (pthread_mutex_init(&data->read, NULL) == 0)
 		return (free(data->forks), FAIL);
 	return (SUCCESS);
 }

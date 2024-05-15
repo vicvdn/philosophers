@@ -6,14 +6,14 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/15 11:21:37 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/15 14:29:55 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Setup
 NAME 		:=	philosophers
 CC			:=	cc
-CFLAGS		:=	-g3#-Wall -Wextra -Werror -g3
+CFLAGS		:=	-g3 -pthread#-Wall -Wextra -Werror -g3
 
 # Valgrind
 VAL_FLAGS	:=	--leak-check=full --show-leak-kinds=all --track-origins=yes
