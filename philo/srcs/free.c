@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:41:32 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/14 15:42:05 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:14:27 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void ft_join_and_free(t_philo **philos, int philo_nb)
 	i = 0;
 	while (i < philo_nb)
 	{
-		pthread_join(philos[i]->thread, NULL);
+		if (philos[i] && philos[i]->thread)
+			pthread_join(philos[i]->thread, NULL);
 		i++;
 	}
 	i = 0;
