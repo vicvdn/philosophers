@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:14:07 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 16:00:43 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:21:30 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ void	*ft_observer(void *arg)
 			pthread_mutex_lock(&data->read);
 			if (data->philos[i]->last_meal == -1)
 			{
+				pthread_mutex_lock(&data->time);
 				if (ft_get_time(data->philos[i]) > data->time_to_die)
 				{
+					pthread_mutex_unlock(&data->time);
 					pthread_mutex_unlock(&data->read);
 					ft_set_dead(data, data->philos[i]);
 					return (NULL);
 				}
+				else
+					pthread_mutex_unlock(&data->read);
+				pthread_mutex_unlock(&data->time);
 			}
 			else
 			{
@@ -49,8 +54,9 @@ void	*ft_observer(void *arg)
 					ft_set_dead(data, data->philos[i]);
 					return (NULL);
 				}
+				else
+					pthread_mutex_unlock(&data->read);
 			}
-			pthread_mutex_unlock(&data->read);
 			i++;
 		}
 	}

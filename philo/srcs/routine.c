@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 16:07:55 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:24:00 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_last_philo_eating(t_philo *philo)
 	ft_usleep(philo, philo->time_to_eat);
 	pthread_mutex_unlock(&philo->own_fork);
 	pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
+	ft_print_message(philo, "finished eating");
 }
 
 void	ft_eating(t_philo *philo)
@@ -62,6 +63,7 @@ void	ft_eating(t_philo *philo)
 		ft_usleep(philo, philo->time_to_eat);
 		pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
 		pthread_mutex_unlock(&philo->own_fork);
+		ft_print_message(philo, "finished eating");
 	}
 }
 
@@ -86,15 +88,15 @@ void	*ft_routine(void *arg)
 		ft_usleep(philo, 50);
 	while (1)
 	{
-		if (ft_stop(philo) == YES)
-			return (NULL);
 		ft_eating(philo);
-		if (ft_stop(philo) == YES)
-			return (NULL);
+		// if (ft_stop(philo) == YES)
+			// return (NULL);
 		ft_thinking(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);
+		if (ft_stop(philo) == YES)
+			return (NULL);
 	}
 	pthread_mutex_destroy(&philo->own_fork);
 	return (NULL);

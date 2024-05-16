@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 16:07:32 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:21:09 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 	pthread_mutex_t	print;
 	pthread_mutex_t	death_lock;
 	pthread_mutex_t	read;
+	pthread_mutex_t	time;
 	pthread_t		observer;
 	int				is_dead;
 	t_philo			**philos;
