@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 16:33:07 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:05:29 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ typedef struct s_philo
 	long			start_time;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*death_lock;
-	pthread_mutex_t	*forks;
-	int				mine;
 	int				other;
-	int				*is_dead;
+	pthread_mutex_t	own_fork;
 	long			last_meal;
 	int				meals_eaten;
 	struct s_data	*data;
@@ -53,7 +51,7 @@ typedef struct s_data
 	int				meals;
 	long			start_time;
 	pthread_mutex_t	print;
-	pthread_mutex_t	read;
+	// pthread_mutex_t	read;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_lock;
 	int				is_dead;
@@ -63,11 +61,12 @@ typedef struct s_data
 /*		FREE		*/
 void			ft_join_and_free(t_data *data);
 void			ft_free_all(t_data *data);
+void			ft_mutex_destroy(t_data *data);
 
 /*		INIT		*/
 void			ft_fill_philo(t_philo *philo, t_data *data, int i);
 int				ft_init_philos(t_data *data);
-void			ft_set_forks(t_data *data, int philo_nb);
+pthread_mutex_t	*ft_set_forks(t_data *data, int philo_nb);
 int				ft_init_rest_data(t_data *data);
 
 /*		PARSING		*/

@@ -216,6 +216,34 @@ The --tool=helgrind and --tool=drd flags in Valgrind are used to specify which t
 
 In summary, both Helgrind and DRD are powerful tools within Valgrind for diagnosing thread-related issues in multi-threaded applications. The choice between them depends on the developer's preference for output readability versus performance.
 
+***To get the time in milliseconds***
+
+To get the time in milliseconds, you can use the gettimeofday function from the sys/time.h header. This function returns the current time of day in seconds and microseconds, which you can then convert to milliseconds by multiplying the seconds by 1000 and adding the microseconds divided by 1000.
+
+Here's an example of how you can get the current time in milliseconds using gettimeofday:
+
+```c
+#include <stdio.h>
+#include <sys/time.h>
+
+long long current_timestamp_milliseconds() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    long long milliseconds = tv.tv_sec * 1000LL + tv.tv_usec / 1000;
+    return milliseconds;
+}
+
+int main() {
+    // Get the current timestamp in milliseconds
+    long long timestamp_ms = current_timestamp_milliseconds();
+
+    // Print the current timestamp
+    printf("Current timestamp in milliseconds: %lld\n", timestamp_ms);
+
+    return 0;
+}
+```
+
 ## Useful links
 
 - [Playlist de Code Vault sur les threads](<https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2>)

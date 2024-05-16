@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:30:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 15:51:10 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:00:29 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ size_t	ft_get_start_time(void)
 
 void	ft_print_message(t_philo *philo, char *message)
 {
-	pthread_mutex_lock(philo->print);
+	pthread_mutex_lock(&philo->data->print);
 	printf("%ld %d %s\n", ft_get_time(philo), philo->id + 1, message);
-	pthread_mutex_unlock(philo->print);
+	pthread_mutex_unlock(&philo->data->print);
 }
 
 void	ft_usleep(t_philo *philo, size_t time)

@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:24:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/15 15:14:37 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:09:25 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int main(int ac, char **av)
 	// // ft_join_and_free(data.philos, data.philo_nb);
 	// // ft_free_all(&data);
 	pthread_mutex_destroy(&data.print);
+	pthread_mutex_destroy(&data.death_lock);
 	return (0);
 }
