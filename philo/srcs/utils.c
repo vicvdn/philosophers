@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:30:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 13:00:29 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:58:05 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,29 @@ void	ft_print_message(t_philo *philo, char *message)
 	pthread_mutex_unlock(&philo->data->print);
 }
 
+// void	ft_usleep(t_philo *philo, size_t time)
+// {
+// 	size_t	start;
+// 	bool	dead;
+
+// 	start = ft_get_time(philo);
+// 	dead = false;
+// 	while (ft_get_time(philo) - start < time)
+// 	{
+// 		pthread_mutex_lock(&philo->data->death_lock);
+// 		if (philo->data->is_dead == 1)
+// 			dead = true;
+// 		else
+// 			dead = false;
+// 		pthread_mutex_unlock(&philo->data->death_lock);
+// 		if (dead == false)
+// 			usleep(100);
+// 		else
+// 			break ;
+// 	}
+// 	return ;
+// }
+
 void	ft_usleep(t_philo *philo, size_t time)
 {
 	size_t	start;
@@ -70,4 +93,5 @@ void	ft_usleep(t_philo *philo, size_t time)
 	start = ft_get_time(philo);
 	while (ft_get_time(philo) - start < time)
 		usleep(100);
+	return ;
 }

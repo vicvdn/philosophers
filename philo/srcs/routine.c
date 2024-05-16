@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 14:01:49 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:07:55 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ void	ft_eating(t_philo *philo)
 		ft_print_message(philo, "died");
 		return ;
 	}
+	pthread_mutex_lock(&philo->data->read);
+	philo->last_meal = ft_get_time(philo);
+	pthread_mutex_unlock(&philo->data->read);
 	if (philo->id == philo->philo_nb - 1)
 		ft_last_philo_eating(philo);
 	else
-	{	
+	{
 		pthread_mutex_lock(&philo->own_fork);
 		ft_print_message(philo, "has taken a fork mine");
 		pthread_mutex_lock(&philo->data->philos[philo->other]->own_fork);
@@ -62,6 +65,18 @@ void	ft_eating(t_philo *philo)
 	}
 }
 
+int	ft_stop(t_philo *philo)
+{
+	pthread_mutex_lock(philo->death_lock);
+	if (philo->data->is_dead == 1)
+	{
+		pthread_mutex_unlock(philo->death_lock);
+		return (YES);
+	}
+	pthread_mutex_unlock(philo->death_lock);
+	return (NO);
+}
+
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
@@ -70,13 +85,15 @@ void	*ft_routine(void *arg)
 	if (philo->id % 2 == 0)
 		ft_usleep(philo, 50);
 	while (1)
-	{	
-		pthread_mutex_lock(philo->death_lock);
-		if (philo->data->is_dead == 1)
+	{
+		if (ft_stop(philo) == YES)
 			return (NULL);
-		pthread_mutex_unlock(philo->death_lock);
 		ft_eating(philo);
+		if (ft_stop(philo) == YES)
+			return (NULL);
 		ft_thinking(philo);
+		if (ft_stop(philo) == YES)
+			return (NULL);
 		ft_sleeping(philo);
 	}
 	pthread_mutex_destroy(&philo->own_fork);
