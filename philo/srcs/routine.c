@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 15:10:42 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:02:29 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	*ft_routine(void *arg)
 	{
 		ft_usleep(philo, 5);
 		ft_eating(philo);
+		if (philo->data->meals != -1)
+			philo->meals++;
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);

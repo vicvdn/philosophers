@@ -6,12 +6,12 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/17 15:36:28 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/17 16:50:33 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Setup
-NAME 		:=	philosophers
+NAME 		:=	philo
 CC			:=	cc
 CFLAGS		:=	-g3 -pthread#-Wall -Wextra -Werror -g3
 
@@ -38,7 +38,8 @@ SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/routine.c \
 				$(SRC_DIR)/remove.c \
 				$(SRC_DIR)/simulation.c \
-				$(SRC_DIR)/time.c
+				$(SRC_DIR)/time.c \
+				$(SRC_DIR)/observer.c
 
 # $(SRC_DIR)/free.c \
 # $(SRC_DIR)/init.c \
@@ -89,7 +90,7 @@ helgrind: clean $(NAME)
 	@valgrind --tool=helgrind ./$(NAME) $(ARGS)
 
 # Exec
-ARGS = 2 800 500 200
+ARGS = 5 800 200 200 1
 
 exec: clean $(NAME)
 	./$(NAME) $(ARGS)

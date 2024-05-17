@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 17:20:42 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:53:15 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,28 @@ int	ft_init_rest_data(t_data *data)
 	data->philos = NULL;
 	data->start_time = 0;
 	data->is_dead = 0;
+	data->all_meals_eaten = NULL;
+	if (data->meals != -1)
+	{
+		data->all_meals_eaten = malloc(sizeof(int) * data->philo_nb);
+		if (!data->all_meals_eaten)
+			return (FAIL);
+		memset(data->all_meals_eaten, 0, sizeof(int) * data->philo_nb);
+	}
 	memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
 	memset(&data->print, 0, sizeof(pthread_mutex_t));
 	memset(&data->read, 0, sizeof(pthread_mutex_t));
-	memset(&data->time, 0, sizeof(pthread_t));
+	// memset(&data->time, 0, sizeof(pthread_t));
+	memset(&data->add_meals, 0, sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(&data->death_lock, NULL) == 0)
 		return (FAIL);
 	if (pthread_mutex_init(&data->print, NULL) == 0)
 		return (FAIL);
 	if (pthread_mutex_init(&data->read, NULL) == 0)
 		return (FAIL);
-	if (pthread_mutex_init(&data->time, NULL) == 0)
+	// if (pthread_mutex_init(&data->time, NULL) == 0)
+	// 	return (FAIL);
+	if (pthread_mutex_init(&data->add_meals, NULL) == 0)
 		return (FAIL);
 	return (SUCCESS);
 }

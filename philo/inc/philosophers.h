@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 15:36:07 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:43:12 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define SUCCESS 0
 # define YES 1
 # define NO 0
+# define STOP 1
+# define CONTINUE 0
 
 typedef struct s_philo
 {
@@ -51,11 +53,13 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals;
+	int				*all_meals_eaten;
 	long			start_time;
 	pthread_mutex_t	print;
 	pthread_mutex_t	death_lock;
 	pthread_mutex_t	read;
 	pthread_mutex_t	time;
+	pthread_mutex_t add_meals;
 	pthread_t		observer;
 	int				is_dead;
 	t_philo			**philos;
@@ -68,8 +72,10 @@ void			ft_mutex_destroy(t_data *data);
 /*		INIT		*/
 void			ft_fill_philo(t_philo *philo, t_data *data, int i);
 int				ft_init_philos(t_data *data);
-pthread_mutex_t	*ft_set_forks(t_data *data, int philo_nb);
 int				ft_init_rest_data(t_data *data);
+
+/*		OBSERVER	*/
+void			*ft_observer(void *arg);
 
 /*		PARSING		*/
 int				ft_parse_args(int ac, char **av, t_data *data);
@@ -77,7 +83,7 @@ int				ft_parse_args(int ac, char **av, t_data *data);
 /*		REMOVE		*/
 
 /*		ROUTINE		*/
-void			ft_thinking(t_philo *philo);
+// void			ft_thinking(t_philo *philo);
 void			ft_sleeping(t_philo *philo);
 void			ft_eating(t_philo *philo);
 void			*ft_routine(void *arg);

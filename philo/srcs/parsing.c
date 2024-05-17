@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:12:13 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 14:21:01 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:08:46 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int ft_parse_args(int ac, char **av, t_data *data)
 		else
 			i++;
 	}
+	if (ac == 5)
+		data->meals = -1;
 	return (SUCCESS);
 }
