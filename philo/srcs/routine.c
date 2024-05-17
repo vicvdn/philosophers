@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 17:24:00 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:18:00 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ void	ft_last_philo_eating(t_philo *philo)
 	ft_print_message(philo, "has taken a fork other");
 	pthread_mutex_lock(&philo->own_fork);
 	ft_print_message(philo, "has taken a fork mine");
+	pthread_mutex_lock(&philo->data->read);
+	philo->last_meal = ft_get_time_from_start(philo);
+	pthread_mutex_unlock(&philo->data->read);
 	ft_print_message(philo, "is eating");
 	ft_usleep(philo, philo->time_to_eat);
 	pthread_mutex_unlock(&philo->own_fork);
 	pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
-	ft_print_message(philo, "finished eating");
 }
 
 void	ft_eating(t_philo *philo)
@@ -48,9 +50,6 @@ void	ft_eating(t_philo *philo)
 		ft_print_message(philo, "died");
 		return ;
 	}
-	pthread_mutex_lock(&philo->data->read);
-	philo->last_meal = ft_get_time(philo);
-	pthread_mutex_unlock(&philo->data->read);
 	if (philo->id == philo->philo_nb - 1)
 		ft_last_philo_eating(philo);
 	else
@@ -59,11 +58,13 @@ void	ft_eating(t_philo *philo)
 		ft_print_message(philo, "has taken a fork mine");
 		pthread_mutex_lock(&philo->data->philos[philo->other]->own_fork);
 		ft_print_message(philo, "has taken a fork other");
+		pthread_mutex_lock(&philo->data->read);
+		philo->last_meal = ft_get_time_from_start(philo);
+		pthread_mutex_unlock(&philo->data->read);
 		ft_print_message(philo, "is eating");
 		ft_usleep(philo, philo->time_to_eat);
 		pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
 		pthread_mutex_unlock(&philo->own_fork);
-		ft_print_message(philo, "finished eating");
 	}
 }
 
@@ -89,12 +90,12 @@ void	*ft_routine(void *arg)
 	while (1)
 	{
 		ft_eating(philo);
-		// if (ft_stop(philo) == YES)
-			// return (NULL);
-		ft_thinking(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);
+		// if (ft_stop(philo) == YES)
+		// 	return (NULL);
+		ft_thinking(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 	}

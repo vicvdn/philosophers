@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:30:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 17:06:16 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:11:17 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,17 @@ int		ft_atoi(const char *str)
 	return (res * neg);
 }
 
-size_t	ft_get_time(t_philo *philo)
+size_t ft_get_time(void)
+{
+	struct timeval	time;
+	size_t			res;
+
+	gettimeofday(&time, NULL);
+	res = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (res);
+}
+
+size_t	ft_get_time_from_start(t_philo *philo)
 {
 	struct timeval	time;
 	size_t			res;
@@ -59,7 +69,7 @@ size_t	ft_get_start_time(void)
 void	ft_print_message(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->data->print);
-	printf("%ld %d %s\n", ft_get_time(philo), philo->id + 1, message);
+	printf("%ld %d %s\n", ft_get_time_from_start(philo), philo->id + 1, message);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
@@ -68,9 +78,9 @@ void	ft_print_message(t_philo *philo, char *message)
 // 	size_t	start;
 // 	bool	dead;
 
-// 	start = ft_get_time(philo);
+// 	start = ft_get_time_from_start(philo);
 // 	dead = false;
-// 	while (ft_get_time(philo) - start < time)
+// 	while (ft_get_time_from_start(philo) - start < time)
 // 	{
 // 		pthread_mutex_lock(&philo->data->death_lock);
 // 		if (philo->data->is_dead == 1)
@@ -90,8 +100,8 @@ void	ft_usleep(t_philo *philo, size_t time)
 {
 	size_t	start;
 
-	start = ft_get_time(philo);
-	while (ft_get_time(philo) - start < time)
+	start = ft_get_time_from_start(philo);
+	while (ft_get_time_from_start(philo) - start < time)
 		usleep(100);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 17:21:09 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:12:11 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int				ft_init_rest_data(t_data *data);
 int				ft_parse_args(int ac, char **av, t_data *data);
 
 /*		REMOVE		*/
-void			ft_print_forks(t_philo *philo);
 
 /*		ROUTINE		*/
 void			ft_thinking(t_philo *philo);
@@ -88,9 +87,10 @@ int				ft_launch_simulation(t_data *data);
 
 /*		UTILS		*/
 int				ft_atoi(const char *str);
-size_t			ft_get_time(t_philo *philo);
+size_t			ft_get_time_from_start(t_philo *philo);
 size_t			ft_get_start_time(void);
 void			ft_print_message(t_philo *philo, char *message);
 void			ft_usleep(t_philo *philo, size_t time);
+size_t 			ft_get_time(void);
 
 #endif
