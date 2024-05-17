@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 15:14:43 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:36:07 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,15 @@ void			*ft_routine(void *arg);
 /*		SIMULATION	*/
 int				ft_launch_simulation(t_data *data);
 
-/*		UTILS		*/
-int				ft_atoi(const char *str);
+/*		TIME		*/
 size_t			ft_get_time_from_start(t_philo *philo);
 size_t			ft_get_start_time(void);
 void			ft_print_dead_message(t_philo *philo, char *message);
 void			ft_print_message(t_philo *philo, char *message);
 void			ft_usleep(t_philo *philo, size_t time);
+
+/*		UTILS		*/
+int				ft_atoi(const char *str);
 size_t 			ft_get_time(void);
 
 #endif

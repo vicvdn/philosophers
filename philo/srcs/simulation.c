@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:14:07 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 15:14:09 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:41:11 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,38 @@ void	ft_set_dead(t_data *data, t_philo *philo)
 	ft_print_dead_message(philo, "died");
 }
 
+int	ft_check_philos(t_data *data, int i)
+{
+	pthread_mutex_lock(&data->read);
+	if (data->philos[i]->last_meal == -1)
+	{
+		// pthread_mutex_lock(&data->time);
+		if (ft_get_time() - data->start_time > data->time_to_die)
+		{
+			// pthread_mutex_unlock(&data->time);
+			pthread_mutex_unlock(&data->read);
+			ft_set_dead(data, data->philos[i]);
+			return (1);
+		}
+		else
+			pthread_mutex_unlock(&data->read);
+		// pthread_mutex_unlock(&data->time);
+		ft_usleep(data->philos[i], 10);
+	}
+	else
+	{
+		if (ft_get_time_from_start(data->philos[i]) - data->philos[i]->last_meal > data->time_to_die)
+		{
+			pthread_mutex_unlock(&data->read);
+			ft_set_dead(data, data->philos[i]);
+			return (1);
+		}
+		else
+			pthread_mutex_unlock(&data->read);
+	}
+	return (0);
+}
+
 void	*ft_observer(void *arg)
 {
 	int	i;
@@ -31,33 +63,8 @@ void	*ft_observer(void *arg)
 		i = 0;
 		while (i < data->philo_nb)
 		{
-			pthread_mutex_lock(&data->read);
-			if (data->philos[i]->last_meal == -1)
-			{
-				pthread_mutex_lock(&data->time);
-				if (ft_get_time() - data->start_time > data->time_to_die)
-				{
-					pthread_mutex_unlock(&data->time);
-					pthread_mutex_unlock(&data->read);
-					ft_set_dead(data, data->philos[i]);
-					return (NULL);
-				}
-				else
-					pthread_mutex_unlock(&data->read);
-				pthread_mutex_unlock(&data->time);
-				ft_usleep(data->philos[i], 10);
-			}
-			else
-			{
-				if (ft_get_time_from_start(data->philos[i]) - data->philos[i]->last_meal > data->time_to_die)
-				{
-					pthread_mutex_unlock(&data->read);
-					ft_set_dead(data, data->philos[i]);
-					return (NULL);
-				}
-				else
-					pthread_mutex_unlock(&data->read);
-			}
+			if (ft_check_philos(data, i) == 1)
+				return (NULL);
 			i++;
 		}
 	}
