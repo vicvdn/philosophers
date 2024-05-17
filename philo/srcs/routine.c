@@ -6,22 +6,23 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 11:18:00 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:10:42 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_thinking(t_philo *philo)
-{
-	ft_print_message(philo, "is thinking");
-	ft_usleep(philo, 100);
-}
+// void	ft_thinking(t_philo *philo)
+// {
+// 	ft_print_message(philo, "is thinking");
+// 	return ;
+// }
 
 void	ft_sleeping(t_philo *philo)
 {
 	ft_print_message(philo, "is sleeping");
 	ft_usleep(philo, philo->time_to_sleep);
+	return ;
 }
 
 void	ft_last_philo_eating(t_philo *philo)
@@ -85,17 +86,19 @@ void	*ft_routine(void *arg)
 	t_philo	*philo;
 	
 	philo = (t_philo *)arg;
-	if (philo->id % 2 == 0)
-		ft_usleep(philo, 50);
+	if (philo->id % 2 != 0)
+		ft_usleep(philo, 42);
 	while (1)
 	{
+		ft_usleep(philo, 5);
 		ft_eating(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);
-		// if (ft_stop(philo) == YES)
-		// 	return (NULL);
-		ft_thinking(philo);
+		if (ft_stop(philo) == YES)
+			return (NULL);
+		ft_print_message(philo, "is thinking");
+		// ft_thinking(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 	}

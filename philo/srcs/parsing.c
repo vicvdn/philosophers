@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:12:13 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 17:22:01 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:21:01 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int ft_parse_args(int ac, char **av, t_data *data)
 		return (FAIL);
 	}
 	data->philo_nb = ft_atoi(av[1]);
-	if (data->philo_nb <= 0 || data->philo_nb > 200)
+	if (data->philo_nb <= 0)
 		return (printf("Error: wrong number of philosophers\n"), FAIL);
 	i = 2;
 	while (i < ac)

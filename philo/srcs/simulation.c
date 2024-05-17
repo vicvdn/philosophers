@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:14:07 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 11:14:03 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:14:09 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_set_dead(t_data *data, t_philo *philo)
 	pthread_mutex_lock(&data->death_lock);
 	data->is_dead = 1;
 	pthread_mutex_unlock(&data->death_lock);
-	ft_print_message(philo, "died");
+	ft_print_dead_message(philo, "died");
 }
 
 void	*ft_observer(void *arg)
