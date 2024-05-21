@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:12:13 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 16:08:46 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:17:58 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,26 @@ static int ft_fill_data(t_data *data, char *str, int i)
 	{
 		data->time_to_die = ft_atoi(str);
 		if (data->time_to_die <= 0)
-			return (free(data), FAIL);
+			return (FAIL);
 	}
 	else if (i == 3)
 	{
 		data->time_to_eat = ft_atoi(str);
 		if (data->time_to_eat <= 0)
-			return (free(data), FAIL);
+			return (FAIL);
 	}
 	else if (i == 4)
 	{
 		data->time_to_sleep = ft_atoi(str);
 		if (data->time_to_sleep <= 0)
-			return (free(data), FAIL);
+			return (FAIL);
 	}
 	if (i == 5)
+	{
 		data->meals = ft_atoi(str);
+		if (data->meals <= 0)
+			return (FAIL);
+	}
 	return (SUCCESS);
 }
 

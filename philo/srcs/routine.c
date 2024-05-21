@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 16:02:29 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:49:58 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_last_philo_eating(t_philo *philo)
 	philo->last_meal = ft_get_time_from_start(philo);
 	pthread_mutex_unlock(&philo->data->read);
 	ft_print_message(philo, "is eating");
+	philo->meals++;
 	ft_usleep(philo, philo->time_to_eat);
 	pthread_mutex_unlock(&philo->own_fork);
 	pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
@@ -63,6 +64,8 @@ void	ft_eating(t_philo *philo)
 		philo->last_meal = ft_get_time_from_start(philo);
 		pthread_mutex_unlock(&philo->data->read);
 		ft_print_message(philo, "is eating");
+		if (philo->data->meals != -1)
+			philo->meals++;
 		ft_usleep(philo, philo->time_to_eat);
 		pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
 		pthread_mutex_unlock(&philo->own_fork);
@@ -90,10 +93,10 @@ void	*ft_routine(void *arg)
 		ft_usleep(philo, 42);
 	while (1)
 	{
-		ft_usleep(philo, 5);
+		// ft_usleep(philo, 5);
 		ft_eating(philo);
-		if (philo->data->meals != -1)
-			philo->meals++;
+		// if (philo->data->meals != -1)
+		// 	philo->meals++;
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);

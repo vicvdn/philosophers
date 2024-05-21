@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:41:32 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/16 16:01:19 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:40:23 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void ft_join_and_free(t_data *data)
 	}
 	if (data->philos)
 		free(data->philos);
+	if (data->all_meals_eaten)
+		free(data->all_meals_eaten);
 }
 
 void	ft_mutex_destroy(t_data *data)

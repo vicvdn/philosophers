@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 16:53:15 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:13:53 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_fill_philo(t_philo *philo, t_data *data, int i)
 	philo->time_to_die = data->time_to_die;
 	philo->time_to_eat = data->time_to_eat;
 	philo->time_to_sleep = data->time_to_sleep;
-	philo->meals = data->meals;
+	philo->meals = 0;
 	philo->last_meal = -1;
 	philo->start_time = data->start_time;
 	if (i == data->philo_nb - 1)
