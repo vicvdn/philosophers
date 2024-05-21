@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/17 16:43:12 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:05:45 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				time_to_think;
 	int				meals;
 	int				*all_meals_eaten;
 	long			start_time;
@@ -75,12 +76,16 @@ int				ft_init_philos(t_data *data);
 int				ft_init_rest_data(t_data *data);
 
 /*		OBSERVER	*/
+void			ft_set_dead(t_data *data, t_philo *philo);
 void			*ft_observer(void *arg);
 
 /*		PARSING		*/
 int				ft_parse_args(int ac, char **av, t_data *data);
 
 /*		REMOVE		*/
+
+/*		ROUTINE UTILS	*/
+void			ft_handle_single_philo(t_philo *philo);
 
 /*		ROUTINE		*/
 // void			ft_thinking(t_philo *philo);

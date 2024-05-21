@@ -6,7 +6,7 @@
 #    By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 09:08:04 by ubuntu            #+#    #+#              #
-#    Updated: 2024/05/17 16:50:33 by vvaudain         ###   ########.fr        #
+#    Updated: 2024/05/21 15:02:25 by vvaudain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,17 +39,8 @@ SRC			:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/remove.c \
 				$(SRC_DIR)/simulation.c \
 				$(SRC_DIR)/time.c \
-				$(SRC_DIR)/observer.c
-
-# $(SRC_DIR)/free.c \
-# $(SRC_DIR)/init.c \
-# $(SRC_DIR)/parsing_utils.c \
-# $(SRC_DIR)/parsing.c \
-# $(SRC_DIR)/remove.c \
-# $(SRC_DIR)/simul_utils.c \
-# $(SRC_DIR)/simulation.c \
-# $(SRC_DIR)/routine_func.c \
-# $(SRC_DIR)/utils.c
+				$(SRC_DIR)/observer.c \
+				$(SRC_DIR)/routine_utils.c
 				
 OBJ			:=	$(SRC:$(SRC_DIR)/%.c=$(BIN_DIR)/%.o)
 

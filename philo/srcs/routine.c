@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 13:49:58 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:01:57 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_last_philo_eating(t_philo *philo)
 	philo->last_meal = ft_get_time_from_start(philo);
 	pthread_mutex_unlock(&philo->data->read);
 	ft_print_message(philo, "is eating");
-	philo->meals++;
 	ft_usleep(philo, philo->time_to_eat);
 	pthread_mutex_unlock(&philo->own_fork);
 	pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
@@ -45,11 +44,7 @@ void	ft_eating(t_philo *philo)
 {
 	if (philo->philo_nb == 1)
 	{
-		ft_usleep(philo, philo->time_to_die);
-		pthread_mutex_lock(philo->death_lock);
-		philo->data->is_dead = 1;
-		pthread_mutex_unlock(philo->death_lock);
-		ft_print_message(philo, "died");
+		ft_handle_single_philo(philo);
 		return ;
 	}
 	if (philo->id == philo->philo_nb - 1)
@@ -64,8 +59,6 @@ void	ft_eating(t_philo *philo)
 		philo->last_meal = ft_get_time_from_start(philo);
 		pthread_mutex_unlock(&philo->data->read);
 		ft_print_message(philo, "is eating");
-		if (philo->data->meals != -1)
-			philo->meals++;
 		ft_usleep(philo, philo->time_to_eat);
 		pthread_mutex_unlock(&philo->data->philos[philo->other]->own_fork);
 		pthread_mutex_unlock(&philo->own_fork);
@@ -87,25 +80,27 @@ int	ft_stop(t_philo *philo)
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
+	t_data	*data;
 	
 	philo = (t_philo *)arg;
+	data = philo->data;
 	if (philo->id % 2 != 0)
-		ft_usleep(philo, 42);
-	while (1)
+		usleep(100);
+	data->time_to_think = data->time_to_die - (data->time_to_eat + data->time_to_sleep);
+	while (ft_stop(philo) == NO)
 	{
-		// ft_usleep(philo, 5);
 		ft_eating(philo);
-		// if (philo->data->meals != -1)
-		// 	philo->meals++;
+		if (philo->data->meals != -1)
+			philo->meals++;
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_print_message(philo, "is thinking");
-		// ft_thinking(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
+		ft_usleep(philo, data->time_to_think / 2);
 	}
 	pthread_mutex_destroy(&philo->own_fork);
 	return (NULL);
