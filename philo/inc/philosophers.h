@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 15:05:45 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:42:13 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int				ft_parse_args(int ac, char **av, t_data *data);
 
 /*		ROUTINE UTILS	*/
 void			ft_handle_single_philo(t_philo *philo);
+void			ft_set_time_to_think(int id, t_data *data);
 
 /*		ROUTINE		*/
 // void			ft_thinking(t_philo *philo);
