@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:25:33 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 10:42:13 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:36:55 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_philo
 	long			start_time;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*death_lock;
+	pthread_mutex_t	meals_lock;
 	int				other;
 	pthread_mutex_t	own_fork;
 	long			last_meal;
@@ -86,7 +87,7 @@ int				ft_parse_args(int ac, char **av, t_data *data);
 
 /*		ROUTINE UTILS	*/
 void			ft_handle_single_philo(t_philo *philo);
-void			ft_set_time_to_think(int id, t_data *data);
+int				ft_set_time_to_think(int id, t_philo *philo);
 
 /*		ROUTINE		*/
 // void			ft_thinking(t_philo *philo);
