@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:17:04 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 15:39:27 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:12:16 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,11 @@ void	*ft_observer(void *arg)
 				if (ft_check_meals(data, data->philos[i]) == STOP)
 				{
 					ft_stop_simulation(data);
-					free(data->all_meals_eaten);
+					if (data->all_meals_eaten)
+					{
+						free(data->all_meals_eaten);
+						data->all_meals_eaten = NULL;
+					}
 					return (NULL);
 				}
 			}

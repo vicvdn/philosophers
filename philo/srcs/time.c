@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:19:43 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 15:18:04 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:47:34 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_usleep(t_philo *philo, size_t time)
 	size_t	start;
 
 	start = ft_get_time_from_start(philo);
+	if (time <= 0)
+		return ;
 	while (ft_get_time_from_start(philo) - start < time)
 	{
 		pthread_mutex_lock(&philo->data->death_lock);

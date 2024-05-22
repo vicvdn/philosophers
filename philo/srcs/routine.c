@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 15:38:27 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:55:01 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
+	int		time_to_think;
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	ft_set_time_to_think(philo->id, philo);
+	time_to_think = ft_set_time_to_think(philo->id, philo);
 	while (ft_stop(philo) == NO)
 	{
 		ft_eating(philo);
@@ -103,8 +104,8 @@ void	*ft_routine(void *arg)
 		ft_print_message(philo, "is thinking");
 		if (ft_stop(philo) == YES)
 			return (NULL);
-		ft_usleep(philo, data->time_to_think / 2);
+		ft_usleep(philo, time_to_think / 2);
 	}
-	pthread_mutex_destroy(&philo->own_fork);
+	// pthread_mutex_destroy(&philo->own_fork);
 	return (NULL);
 }
