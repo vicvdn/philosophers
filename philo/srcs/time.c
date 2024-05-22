@@ -6,13 +6,13 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:19:43 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 14:48:51 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:18:04 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-size_t ft_get_time(void)
+size_t	ft_get_time(void)
 {
 	struct timeval	time;
 	size_t			res;

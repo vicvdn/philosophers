@@ -6,13 +6,13 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:12:13 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 14:57:50 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:15:49 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int ft_fill_data(t_data *data, char *str, int i)
+static int	ft_fill_data(t_data *data, char *str, int i)
 {
 	if (i == 2)
 	{
@@ -41,7 +41,7 @@ static int ft_fill_data(t_data *data, char *str, int i)
 	return (SUCCESS);
 }
 
-int ft_parse_args(int ac, char **av, t_data *data)
+int	ft_parse_args(int ac, char **av, t_data *data)
 {
 	int	i;
 

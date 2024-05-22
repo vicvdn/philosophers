@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 13:13:53 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:15:02 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_fill_philo(t_philo *philo, t_data *data, int i)
 	philo->data = data;
 }
 
-int ft_init_philos(t_data *data)
+int	ft_init_philos(t_data *data)
 {
 	int		i;
 	t_philo	**philos;
@@ -70,7 +70,6 @@ int	ft_init_rest_data(t_data *data)
 	memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
 	memset(&data->print, 0, sizeof(pthread_mutex_t));
 	memset(&data->read, 0, sizeof(pthread_mutex_t));
-	// memset(&data->time, 0, sizeof(pthread_t));
 	memset(&data->add_meals, 0, sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(&data->death_lock, NULL) == 0)
 		return (FAIL);
@@ -78,8 +77,6 @@ int	ft_init_rest_data(t_data *data)
 		return (FAIL);
 	if (pthread_mutex_init(&data->read, NULL) == 0)
 		return (FAIL);
-	// if (pthread_mutex_init(&data->time, NULL) == 0)
-	// 	return (FAIL);
 	if (pthread_mutex_init(&data->add_meals, NULL) == 0)
 		return (FAIL);
 	return (SUCCESS);

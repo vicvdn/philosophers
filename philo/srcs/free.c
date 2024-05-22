@@ -6,15 +6,15 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:41:32 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 13:40:23 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:14:38 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void ft_join_and_free(t_data *data)
+void	ft_join_and_free(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philo_nb)
@@ -39,7 +39,7 @@ void ft_join_and_free(t_data *data)
 
 void	ft_mutex_destroy(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philo_nb)
