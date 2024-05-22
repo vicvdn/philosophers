@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 17:58:03 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:35:29 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_sleeping(t_philo *philo)
 void	ft_last_philo_eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->philos[philo->other]->own_fork);
-	ft_print_message(philo, "has taken a fork other");
+	ft_print_message(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->own_fork);
-	ft_print_message(philo, "has taken a fork mine");
+	ft_print_message(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->read);
 	philo->last_meal = ft_get_time_from_start(philo);
 	pthread_mutex_unlock(&philo->data->read);
@@ -46,9 +46,9 @@ void	ft_eating(t_philo *philo)
 	else
 	{
 		pthread_mutex_lock(&philo->own_fork);
-		ft_print_message(philo, "has taken a fork mine");
+		ft_print_message(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->data->philos[philo->other]->own_fork);
-		ft_print_message(philo, "has taken a fork other");
+		ft_print_message(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->data->read);
 		philo->last_meal = ft_get_time_from_start(philo);
 		pthread_mutex_unlock(&philo->data->read);
@@ -70,6 +70,8 @@ int	ft_stop(t_philo *philo)
 	pthread_mutex_unlock(philo->death_lock);
 	return (NO);
 }
+
+//si marche tjrs pas tester si time_to_think == 0 de usleep(10)
 
 void	*ft_routine(void *arg)
 {
