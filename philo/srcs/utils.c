@@ -6,11 +6,45 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:30:23 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/21 15:18:18 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:52:54 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_len(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+long	ft_atol(const char *str)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\v' || *str == '\f' || *str == '\r')
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
+}
 
 int	ft_atoi(const char *str)
 {

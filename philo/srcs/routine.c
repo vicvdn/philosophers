@@ -6,17 +6,11 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 15:55:01 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:58:03 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-// void	ft_thinking(t_philo *philo)
-// {
-// 	ft_print_message(philo, "is thinking");
-// 	return ;
-// }
 
 void	ft_sleeping(t_philo *philo)
 {
@@ -89,13 +83,7 @@ void	*ft_routine(void *arg)
 	while (ft_stop(philo) == NO)
 	{
 		ft_eating(philo);
-		if (philo->data->meals != -1)
-		{
-			pthread_mutex_lock(&philo->meals_lock);
-			philo->meals++;
-			pthread_mutex_unlock(&philo->meals_lock);
-
-		}
+		ft_add_meals(philo);
 		if (ft_stop(philo) == YES)
 			return (NULL);
 		ft_sleeping(philo);
@@ -106,6 +94,5 @@ void	*ft_routine(void *arg)
 			return (NULL);
 		ft_usleep(philo, time_to_think / 2);
 	}
-	// pthread_mutex_destroy(&philo->own_fork);
 	return (NULL);
 }

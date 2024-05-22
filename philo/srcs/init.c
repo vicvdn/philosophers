@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:14 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 15:37:57 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:59:51 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,11 @@ int	ft_init_rest_data(t_data *data)
 	memset(&data->death_lock, 0, sizeof(pthread_mutex_t));
 	memset(&data->print, 0, sizeof(pthread_mutex_t));
 	memset(&data->read, 0, sizeof(pthread_mutex_t));
-	// memset(&data->add_meals, 0, sizeof(pthread_mutex_t));
 	if (pthread_mutex_init(&data->death_lock, NULL) == 0)
 		return (FAIL);
 	if (pthread_mutex_init(&data->print, NULL) == 0)
 		return (FAIL);
 	if (pthread_mutex_init(&data->read, NULL) == 0)
 		return (FAIL);
-	// if (pthread_mutex_init(&data->add_meals, NULL) == 0)
-	// 	return (FAIL);
 	return (SUCCESS);
 }
