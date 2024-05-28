@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:00:34 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 17:58:33 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:59:32 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_set_time_to_think(int id, t_philo *philo)
 	int	time;
 
 	if (id % 2 != 0)
-		usleep(100);
+		ft_usleep(philo, philo->data->time_to_die / 3);
 	time = philo->time_to_die - (philo->time_to_eat + philo->time_to_sleep);
 	return (time);
 }

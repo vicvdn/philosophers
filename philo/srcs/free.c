@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:41:32 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 17:05:53 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:59:53 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_join_and_free(t_data *data)
 		pthread_join(data->philos[i]->thread, NULL);
 		i++;
 	}
-	ft_free_philos(data);
 	if (data->philo_nb != 1)
 		pthread_join(data->observer, NULL);
 	if (data->all_meals_eaten)
@@ -52,6 +51,7 @@ void	ft_join_and_free(t_data *data)
 		free(data->all_meals_eaten);
 		data->all_meals_eaten = NULL;
 	}
+	ft_free_philos(data);
 }
 
 void	ft_mutex_destroy(t_data *data)

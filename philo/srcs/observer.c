@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:17:04 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 18:35:22 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:57:15 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void	*ft_observer(void *arg)
 			}
 			i++;
 		}
-		usleep(10);
+		usleep(data->time_to_die / 3);
 	}
 }

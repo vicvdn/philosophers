@@ -6,7 +6,7 @@
 /*   By: vvaudain <vvaudain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:02:46 by vvaudain          #+#    #+#             */
-/*   Updated: 2024/05/22 18:35:29 by vvaudain         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:10:52 by vvaudain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ void	*ft_routine(void *arg)
 		ft_print_message(philo, "is thinking");
 		if (ft_stop(philo) == YES)
 			return (NULL);
-		ft_usleep(philo, time_to_think / 2);
+		if (time_to_think != 0)
+			ft_usleep(philo, time_to_think / 2);
+		else
+			usleep (25);
 	}
 	return (NULL);
 }
